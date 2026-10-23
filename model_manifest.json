@@ -1,0 +1,16 @@
+{
+  "model_description": "Recorded Split 1 original-label Random Forest",
+  "feature_count": 71,
+  "training_versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit_learn": "1.8.0",
+    "joblib": "1.5.3"
+  },
+  "files_sha256": {
+    "results/split1_baseline_forest.joblib": "04fc33ae6f9818454f18302983b0c2c62f0bc25ad9d21ad9ee5e15144036586a",
+    "results/feature_schema.csv": "ebc0e7aaa07fe52e5028b9185f73bf59b33b004e12560f0813c90ece3afc1a28"
+  },
+  "source_archive_sha256": "311ff8acf43c29a2bcc399da28f682d83fa37e44ba2e7e9b45c57d72f26d81f2"
+}
