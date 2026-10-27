@@ -1,0 +1,10 @@
+{
+  "source": "DataSense 2025 one-second attack and benign files",
+  "source_url": "https://www.unb.ca/cic/datasets/iiot-dataset-2025.html",
+  "source_archive_sha256": "311ff8acf43c29a2bcc399da28f682d83fa37e44ba2e7e9b45c57d72f26d81f2",
+  "sample_rows": 90,
+  "sampling": "First two held-out records per device, supplied class, model prediction and all-zero status; descriptive demonstration sample, not a random performance estimate.",
+  "test_split": 1,
+  "all_sample_devices_excluded_from_model_training": true,
+  "independent_original_label_verification": false
+}

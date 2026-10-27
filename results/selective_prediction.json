@@ -1,0 +1,18 @@
+{
+  "deferred_records": 12410,
+  "deferred_attacks": 2010,
+  "coverage_auto_pct": 78.01321687366016,
+  "automatic_subset_metrics": {
+    "accuracy_pct": 90.2186996116549,
+    "balanced_accuracy_pct": 89.53991405016292,
+    "attack_precision_pct": 89.94231345519928,
+    "attack_recall_pct": 93.67221940467367,
+    "attack_f1_pct": 91.76938217814214,
+    "false_positive_rate_pct": 14.592391304347826,
+    "TN": 15715,
+    "FP": 2685,
+    "FN": 1622,
+    "TP": 24011
+  },
+  "note": "Deferred records are unresolved, not correct detections."
+}

@@ -1,0 +1,9 @@
+{
+  "unique_float32_vectors": 147397,
+  "contradictory_vector_groups": 10,
+  "minimum_in_sample_errors_all_vectors": 9701,
+  "all_vector_in_sample_accuracy_ceiling_pct": 95.73002451681624,
+  "test_rows_with_vector_seen_in_train": 12519,
+  "nonzero_test_rows_with_vector_seen_in_train": 109,
+  "zero_vector_accuracy_ceiling_pct": 95.74190879040103
+}

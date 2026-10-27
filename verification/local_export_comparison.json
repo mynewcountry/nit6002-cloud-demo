@@ -1,0 +1,9 @@
+{
+  "checked_at_utc": "2026-10-23T01:29:42.892364+00:00",
+  "rows": 90,
+  "all_predicted_classes_match": true,
+  "attack_scores_match_with_absolute_tolerance_1e_minus12": true,
+  "maximum_attack_score_difference": 1.1102230246251565e-16,
+  "scope": "Downloaded CSV comparison. Record the actual cloud URL and access evidence separately.",
+  "origin": "Local inference export generated during packaging; no cloud deployment was performed."
+}

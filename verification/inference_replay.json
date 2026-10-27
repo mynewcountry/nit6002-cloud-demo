@@ -1,0 +1,22 @@
+{
+  "verified_at_utc": "2026-10-23T01:18:42.059866+00:00",
+  "scope": "Inference replay of the recovered saved model, not a fresh model-training run or independent label validation",
+  "original_archive_digest_matches": true,
+  "source_rows_checked": 227191,
+  "source_all_zero_rows": 78859,
+  "source_missing_cells": 0,
+  "source_category_counts": {
+    "ddos": 18056,
+    "dos": 18420,
+    "mitm": 8062,
+    "recon": 33648,
+    "web": 2796,
+    "malware": 7541,
+    "bruteforce": 1868,
+    "benign": 136800
+  },
+  "held_out_predictions_checked": 56443,
+  "held_out_prediction_mismatches": 0,
+  "sample_rows": 90,
+  "source_archive_sha256": "311ff8acf43c29a2bcc399da28f682d83fa37e44ba2e7e9b45c57d72f26d81f2"
+}

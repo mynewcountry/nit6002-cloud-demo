@@ -1,0 +1,18 @@
+test_navigation_and_real_sample_inference (test_app.AppChecks.test_navigation_and_real_sample_inference) ... ok
+test_review_recorded_results_and_evidence_pages (test_app.AppChecks.test_review_recorded_results_and_evidence_pages) ... ok
+test_absent_or_invalid_labels_do_not_create_false_metrics (test_core.InferenceChecks.test_absent_or_invalid_labels_do_not_create_false_metrics) ... ok
+test_all_zero_rows_retained_and_flagged (test_core.InferenceChecks.test_all_zero_rows_retained_and_flagged) ... ok
+test_bad_feature_values_blocked (test_core.InferenceChecks.test_bad_feature_values_blocked) ... ok
+test_duplicate_headers_and_empty_input_rejected (test_core.InferenceChecks.test_duplicate_headers_and_empty_input_rejected) ... ok
+test_feature_order_and_label_exclusion (test_core.InferenceChecks.test_feature_order_and_label_exclusion) ... ok
+test_metrics_reconcile_confusion_counts (test_core.InferenceChecks.test_metrics_reconcile_confusion_counts) ... ok
+test_missing_field_blocked (test_core.InferenceChecks.test_missing_field_blocked) ... ok
+test_original_replay_evidence (test_core.InferenceChecks.test_original_replay_evidence) ... ok
+test_original_sample_predictions (test_core.InferenceChecks.test_original_sample_predictions) ... ok
+test_every_recorded_method_and_budget_reproduces (test_core.ReviewChecks.test_every_recorded_method_and_budget_reproduces) ... ok
+test_flip_truth_does_not_enter_selection (test_core.ReviewChecks.test_flip_truth_does_not_enter_selection) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 3.313s
+
+OK

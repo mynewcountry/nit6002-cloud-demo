@@ -1,0 +1,10 @@
+Test,Expected result,Actual result,Pass or fail,Date and time UTC,Deployment URL,Code commit
+App opens,App opens from the deployed URL,,,,,
+Sample predictions,Matches demo/expected_predictions.csv for every source_id,,,,,
+All-zero records,Retained and flagged for source review,,,,,
+Missing feature,Prediction blocked with a clear missing-field message,,,,,
+Non-finite value,Prediction blocked with an invalid-feature message,,,,,
+Review queue at 5 percent,Stratified queue has 8538 rows and recovers 2103 known flips,,,,,
+Review queue at 25 percent,Stratified queue has 42687 rows and recovers 16298 known flips,,,,,
+CSV and JSON downloads,Downloads contain the displayed predictions and execution details,,,,,
+Second device access,App opens and sample runs from another device or network,,,,,
