@@ -1,0 +1,124 @@
+{
+  "scope": "Illustrative examples from the previous researcher-authored challenge, available during V4 repair. These are not independent validation cases.",
+  "examples": [
+    {
+      "id": "N01",
+      "title": "Benign ordinary clean event",
+      "evidence": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "nonfinite_features": false,
+        "model_attack_score": null
+      },
+      "context": {
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {}
+      }
+    },
+    {
+      "id": "N07",
+      "title": "All-zero benign with simultaneous secondary signal",
+      "evidence": {
+        "predicted_attack": false,
+        "all_zero": true,
+        "nonfinite_features": false,
+        "model_attack_score": null
+      },
+      "context": {
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {}
+      }
+    },
+    {
+      "id": "N12",
+      "title": "Fully authorised read-only collection with independent signal",
+      "evidence": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "nonfinite_features": false,
+        "model_attack_score": null
+      },
+      "context": {
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      }
+    },
+    {
+      "id": "N25",
+      "title": "Medium response without playbook authorisation",
+      "evidence": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "nonfinite_features": false,
+        "model_attack_score": null
+      },
+      "context": {
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "rollback_plan": true,
+          "rollback_validated": true,
+          "time_limit_minutes": 45,
+          "playbook_authorised": false
+        }
+      }
+    },
+    {
+      "id": "N27",
+      "title": "High-impact privileged identity disable with benign model but IOC",
+      "evidence": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "nonfinite_features": false,
+        "model_attack_score": null
+      },
+      "context": {
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "disable_privileged_identity",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true
+        }
+      }
+    },
+    {
+      "id": "N28",
+      "title": "High-impact block despite corrupt model and independent signal",
+      "evidence": {
+        "predicted_attack": true,
+        "all_zero": true,
+        "nonfinite_features": false,
+        "model_attack_score": null
+      },
+      "context": {
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "block_production_subnet"
+        }
+      }
+    }
+  ]
+}

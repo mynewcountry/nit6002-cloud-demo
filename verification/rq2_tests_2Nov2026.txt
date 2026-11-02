@@ -1,0 +1,39 @@
+test_navigation_and_real_sample_inference (test_app.AppChecks.test_navigation_and_real_sample_inference) ... ok
+test_review_recorded_results_and_evidence_pages (test_app.AppChecks.test_review_recorded_results_and_evidence_pages) ... ok
+test_absent_or_invalid_labels_do_not_create_false_metrics (test_core.InferenceChecks.test_absent_or_invalid_labels_do_not_create_false_metrics) ... ok
+test_all_zero_rows_retained_and_flagged (test_core.InferenceChecks.test_all_zero_rows_retained_and_flagged) ... ok
+test_bad_feature_values_blocked (test_core.InferenceChecks.test_bad_feature_values_blocked) ... ok
+test_duplicate_headers_and_empty_input_rejected (test_core.InferenceChecks.test_duplicate_headers_and_empty_input_rejected) ... ok
+test_feature_order_and_label_exclusion (test_core.InferenceChecks.test_feature_order_and_label_exclusion) ... ok
+test_metrics_reconcile_confusion_counts (test_core.InferenceChecks.test_metrics_reconcile_confusion_counts) ... ok
+test_missing_field_blocked (test_core.InferenceChecks.test_missing_field_blocked) ... ok
+test_original_replay_evidence (test_core.InferenceChecks.test_original_replay_evidence) ... ok
+test_original_sample_predictions (test_core.InferenceChecks.test_original_sample_predictions) ... ok
+test_every_recorded_method_and_budget_reproduces (test_core.ReviewChecks.test_every_recorded_method_and_budget_reproduces) ... ok
+test_flip_truth_does_not_enter_selection (test_core.ReviewChecks.test_flip_truth_does_not_enter_selection) ... ok
+test_all_34_frozen_cases (test_policy_reference.PolicyHardenedTests.test_all_34_frozen_cases) ... ok
+test_bad_evidence_type_fails_closed (test_policy_reference.PolicyHardenedTests.test_bad_evidence_type_fails_closed) ... ok
+test_high_impact_requires_approval_even_with_bad_features (test_policy_reference.PolicyHardenedTests.test_high_impact_requires_approval_even_with_bad_features) ... ok
+test_low_risk_auto_collection_is_recommendation_only (test_policy_reference.PolicyHardenedTests.test_low_risk_auto_collection_is_recommendation_only) ... ok
+test_unknown_and_label_fields_rejected (test_policy_reference.PolicyHardenedTests.test_unknown_and_label_fields_rejected) ... ok
+test_unknown_top_level_action_fails_closed (test_policy_reference.PolicyHardenedTests.test_unknown_top_level_action_fails_closed) ... ok
+test_benign_prediction_cannot_suppress_high_impact_approval (test_rq2_app.DecisionViewChecks.test_benign_prediction_cannot_suppress_high_impact_approval) ... ok
+test_changing_the_selected_record_hides_stale_exports (test_rq2_app.DecisionViewChecks.test_changing_the_selected_record_hides_stale_exports) ... ok
+test_latest_run_requires_a_completed_prediction_then_uses_it (test_rq2_app.DecisionViewChecks.test_latest_run_requires_a_completed_prediction_then_uses_it) ... ok
+test_ready_read_only_collection_remains_a_recommendation (test_rq2_app.DecisionViewChecks.test_ready_read_only_collection_remains_a_recommendation) ... ok
+test_real_inference_can_generate_exportable_obligations (test_rq2_app.DecisionViewChecks.test_real_inference_can_generate_exportable_obligations) ... ok
+test_zero_features_retain_source_and_approval_obligations (test_rq2_app.DecisionViewChecks.test_zero_features_retain_source_and_approval_obligations) ... ok
+test_adapter_matches_reference_for_all_90_real_predictions (test_rq2_core.DecisionIntegrationChecks.test_adapter_matches_reference_for_all_90_real_predictions) ... ok
+test_csv_and_json_exports_reconcile_every_example (test_rq2_core.DecisionIntegrationChecks.test_csv_and_json_exports_reconcile_every_example) ... ok
+test_dataset_labels_and_identifiers_do_not_change_policy_inputs (test_rq2_core.DecisionIntegrationChecks.test_dataset_labels_and_identifiers_do_not_change_policy_inputs) ... ok
+test_fingerprint_changes_with_context_but_not_evaluation_time (test_rq2_core.DecisionIntegrationChecks.test_fingerprint_changes_with_context_but_not_evaluation_time) ... ok
+test_quality_evidence_cannot_be_overridden_by_context (test_rq2_core.DecisionIntegrationChecks.test_quality_evidence_cannot_be_overridden_by_context) ... ok
+test_untrusted_prediction_fields_are_rejected (test_rq2_core.DecisionIntegrationChecks.test_untrusted_prediction_fields_are_rejected) ... ok
+test_changed_approval_execution_or_policy_digest_is_rejected (test_rq2_export.DownloadVerificationChecks.test_changed_approval_execution_or_policy_digest_is_rejected) ... ok
+test_matching_downloads_replay_successfully (test_rq2_export.DownloadVerificationChecks.test_matching_downloads_replay_successfully) ... ok
+test_mismatched_or_multiple_csv_records_are_rejected (test_rq2_export.DownloadVerificationChecks.test_mismatched_or_multiple_csv_records_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 6.762s
+
+OK

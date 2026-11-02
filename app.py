@@ -9,6 +9,7 @@ import pandas as pd
 import streamlit as st
 
 from ml_core import ROOT, digest, features, infer, load_packaged_model, prepare_inputs, read_csv_bytes, replay_review, runtime_versions
+from rq2_view import render_rq2_view
 
 st.set_page_config(page_title="NIT6002 Cybersecurity Data Review", layout="wide")
 
@@ -44,16 +45,20 @@ def open_predictions():
     st.session_state["page"] = "Predict a CSV"
 
 
+def open_decisions():
+    st.session_state["page"] = "RQ2 decision support"
+
+
 st.sidebar.title("NIT6002")
-st.sidebar.caption("Cybersecurity data review")
-page = st.sidebar.radio("Workspace", ["Overview", "Predict a CSV", "Review experiment", "Recorded evaluation", "Deployment evidence"], key="page")
+st.sidebar.caption("AI evidence and response decisions")
+page = st.sidebar.radio("Workspace", ["Overview", "Predict a CSV", "RQ2 decision support", "Review experiment", "Recorded evaluation", "Deployment evidence"], key="page")
 st.sidebar.divider()
 st.sidebar.caption("Recorded Random Forest model\n\nDataSense one-second representation\n\n71 numeric predictors")
 st.sidebar.caption("Research prototype. Original dataset labels have not been independently verified.")
 
 if page == "Overview":
-    st.title("Cybersecurity data review")
-    st.write("Inspect the data behind a prediction and explore how limited review budgets affect the recorded experiment.")
+    st.title("AI-Based Mitigation Approaches for Cybersecurity Attacks")
+    st.write("Inspect detection evidence, replay the historical label-review pilot and explore evidence-sensitive response obligations.")
     source = read_json("results/source_audit.json")
     repeated = recorded_csv("repeated_baseline_results.csv")
     cols = st.columns(4)
@@ -62,7 +67,7 @@ if page == "Overview":
     cols[2].metric("Mean attack recall", pct(repeated.attack_recall_pct.mean()))
     cols[3].metric("Mean attack F1", pct(repeated.attack_f1_pct.mean()))
     st.caption("Means are unweighted across the five recorded device holdouts. Test sets can overlap across runs.")
-    left, right = st.columns(2)
+    left, right, response = st.columns(3)
     with left:
         st.subheader("Run a prediction")
         st.write("Use the included held-out sample or upload a compatible CSV. The app checks the 71 model fields before inference.")
@@ -71,6 +76,10 @@ if page == "Overview":
         st.subheader("Replay the review experiment")
         st.write("Choose one of four recorded review rules and a budget. The app rebuilds the queue from saved out-of-group scores.")
         st.caption("Known synthetic label changes are used for evaluation after selection. No original labels are automatically corrected.")
+    with response:
+        st.subheader("Explore RQ2 decisions")
+        st.write("Combine a real model prediction or an illustrative case with simulated context. Inspect evidence requests, SOC review and approval requirements.")
+        st.button("Open RQ2 decision support", on_click=open_decisions)
     st.subheader("Benchmark audit")
     rows = [
         ("Selected-member checksums", "Matched in the recorded audit"),
@@ -80,7 +89,7 @@ if page == "Overview":
         ("Original label accuracy", "Not independently verified"),
     ]
     st.dataframe(pd.DataFrame(rows, columns=["Measure", "Recorded result"]), hide_index=True, width="stretch")
-    st.info("The prototype supports the dataset-verification and label-review questions. It is an offline research model served through a web interface; live incident response is outside this demonstration.")
+    st.info("RQ1 examines dataset verification. RQ2 examines how data quality and AI evidence support SIEM, SOC and SOAR decisions within the four-layer architecture. Label review is a supporting experiment; the response view never executes actions.")
 
 elif page == "Predict a CSV":
     st.title("Predict a CSV")
@@ -157,9 +166,13 @@ elif page == "Predict a CSV":
         st.download_button("Download all predictions", output.to_csv(index=False).encode(), "predictions.csv", "text/csv")
         st.download_button("Download this run record", json.dumps(evidence, indent=2).encode(), "inference_run_record.json", "application/json")
 
+elif page == "RQ2 decision support":
+    render_rq2_view()
+
 elif page == "Review experiment":
     st.title("Review experiment")
     st.write("Rebuild a review queue for the recorded Split 1 training set, using its saved out-of-group scores and fixed selection rules.")
+    st.caption("Historical pilot only. Its ranking ties and results differ from the later five-seed comparison in the final report.")
     st.info("This controlled pilot deliberately changed 17,075 training labels. Recovery is measured against those known changes. It does not estimate the accuracy of the original annotations.")
     method = st.selectbox("Review method", ["Random", "Disagreement first", "Zero first", "Stratified review"], index=3, key="review_method")
     budget = st.select_slider("Training records reviewed (%)", options=[1, 5, 10, 25], value=5, key="review_budget")
