@@ -1,0 +1,56 @@
+{
+  "schema_version": "nit6002.rq2.decision.v1",
+  "record_id": "f123289c73967ae0",
+  "input_fingerprint": "f123289c73967ae07445631c1e053d43511e558fd068d660c36130fcf7d1aab6",
+  "evaluated_at_utc": "2026-11-02T04:48:57.478309+00:00",
+  "app_release": "rq2-cloud-view-2026-11-02.1",
+  "policy_version": "V4 exploratory, post-hoc repair",
+  "source_identity": {
+    "policy_sha256": "804b1a607f1cf51795412804f6ff732f2308bb37f3ef57f569712e5802c381d5",
+    "adapter_sha256": "db08a918e3bbbaade88a2fc5ed7384c255e7eb486d7b3da74156a2d9eef5a282",
+    "view_sha256": "3968f30c9c17df1a2dfeddc079534599de3ed60051bdf76e6cef916b687445a2",
+    "model_manifest_sha256": "75fccd4c88f5372e88a55baa09191e0c4e0652a2536b0db671d023e61d07f4b6"
+  },
+  "evidence_origin": "illustrative_scenario",
+  "context_origin": "simulated user inputs; not observed in the dataset or retrieved from security systems",
+  "detector_evidence": {
+    "predicted_attack": false,
+    "all_zero": false,
+    "nonfinite_features": false,
+    "model_attack_score": null
+  },
+  "provenance": {
+    "illustrative_case": "N27"
+  },
+  "policy_inputs": {
+    "predicted_attack": false,
+    "all_zero": false,
+    "critical_asset": false,
+    "privileged_access": false,
+    "secondary_signal": true,
+    "additional_evidence": {
+      "requested_action": "disable_privileged_identity",
+      "signal_verified": true,
+      "signal_fresh": true,
+      "signal_provenance_independent": true,
+      "nonfinite_features": false
+    }
+  },
+  "recommendation": {
+    "request_source_evidence": false,
+    "SOC_review": true,
+    "human_approval_required": true,
+    "auto_collect_evidence": false,
+    "no_case": false,
+    "reason_codes": [
+      "BENIGN_MODEL_DISAGREES_WITH_SECURITY_SIGNAL",
+      "PROPOSED_HIGH_IMPACT_ACTION_NEEDS_SEPARATE_APPROVAL"
+    ],
+    "execution_authorised": false
+  },
+  "reason_explanations": [
+    "The model's benign prediction does not resolve the secondary security signal.",
+    "A high-impact proposal still requires approval when another signal conflicts with a benign or unreliable model."
+  ],
+  "scope": "Decision-support demonstration only. No action is executed, no approval is granted, and natural labels remain unadjudicated. V4 repairs known cases and is not independently validated."
+}

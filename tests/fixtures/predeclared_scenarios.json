@@ -1,0 +1,838 @@
+{
+  "scope": "Post-V3 researcher-authored stress scenarios; not blind or externally adjudicated; NOT used during V3 development",
+  "obligations": "Requirements judged from NIT6001 conceptual safety controls and additional conservative research assumptions",
+  "cases": [
+    {
+      "id": "N01",
+      "title": "Benign ordinary clean event",
+      "requirement": "R0",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false
+      },
+      "must": [
+        "no_case"
+      ],
+      "forbid": [
+        "SOC_review",
+        "request_source_evidence",
+        "human_approval_required",
+        "auto_collect_evidence"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N02",
+      "title": "Benign clean critical asset without independent indication",
+      "requirement": "R0",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": true,
+        "privileged_access": false,
+        "secondary_signal": false
+      },
+      "must": [
+        "no_case"
+      ],
+      "forbid": [
+        "SOC_review",
+        "request_source_evidence",
+        "human_approval_required",
+        "auto_collect_evidence"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N03",
+      "title": "Benign clean privileged session without secondary signal",
+      "requirement": "R0",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": true,
+        "secondary_signal": false
+      },
+      "must": [
+        "no_case"
+      ],
+      "forbid": [
+        "SOC_review",
+        "request_source_evidence",
+        "human_approval_required",
+        "auto_collect_evidence"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N04",
+      "title": "Attack prediction alone receives triage",
+      "requirement": "R1",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N05",
+      "title": "Benign model disagrees with secondary signal",
+      "requirement": "R2",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N06",
+      "title": "Benign on critical asset with independent signal",
+      "requirement": "R2",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": true,
+        "privileged_access": false,
+        "secondary_signal": true
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N07",
+      "title": "All-zero benign with simultaneous secondary signal",
+      "requirement": "R3",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": true,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true
+      },
+      "must": [
+        "request_source_evidence",
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N08",
+      "title": "All-zero attack with simultaneous secondary signal",
+      "requirement": "R3",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": true,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true
+      },
+      "must": [
+        "request_source_evidence",
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N09",
+      "title": "All-zero benign without a signal requests evidence",
+      "requirement": "R3",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": true,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false
+      },
+      "must": [
+        "request_source_evidence"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N10",
+      "title": "Nonfinite features and no security signal",
+      "requirement": "R3",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "nonfinite_features": true
+        }
+      },
+      "must": [
+        "request_source_evidence"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N11",
+      "title": "Nonfinite features with separate IOC",
+      "requirement": "R3",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "nonfinite_features": true,
+          "independently_verified_ioc": true
+        }
+      },
+      "must": [
+        "request_source_evidence",
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N12",
+      "title": "Fully authorised read-only collection with independent signal",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "auto_collect_evidence"
+      ],
+      "forbid": [
+        "human_approval_required",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N13",
+      "title": "Read-only task lacks playbook authorisation",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": false,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N14",
+      "title": "Read-only task lacks privacy clearance",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": false,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N15",
+      "title": "Read-only task lacks audit trail",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": false
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N16",
+      "title": "Read-only task has stale signal",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": false,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N17",
+      "title": "Read-only task lacks independent provenance",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": false,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N18",
+      "title": "Read-only task has observed but not verified signal",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": false,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N19",
+      "title": "Read-only task with no metadata cannot be automatically proposed",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low"
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N20",
+      "title": "All-zero predictors block otherwise authorised collection",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": true,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "read_only_log_collection",
+          "action_impact": "low",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true,
+          "playbook_authorised": true,
+          "privacy_authorised": true,
+          "access_audit_enabled": true
+        }
+      },
+      "must": [
+        "request_source_evidence",
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N21",
+      "title": "Medium impact, rollback validated, containment bounded",
+      "requirement": "R5",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "rollback_plan": true,
+          "rollback_validated": true,
+          "time_limit_minutes": 45
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N22",
+      "title": "Medium rollback exists but is not validated",
+      "requirement": "R5",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "rollback_plan": true,
+          "rollback_validated": false,
+          "time_limit_minutes": 45
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N23",
+      "title": "Medium rollback time exceeds illustrative cap",
+      "requirement": "R5",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "rollback_plan": true,
+          "rollback_validated": true,
+          "time_limit_minutes": 61
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N24",
+      "title": "Medium rollback duration missing",
+      "requirement": "R5",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "rollback_plan": true,
+          "rollback_validated": true
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N25",
+      "title": "Medium response without playbook authorisation",
+      "requirement": "R5",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "rollback_plan": true,
+          "rollback_validated": true,
+          "time_limit_minutes": 45,
+          "playbook_authorised": false
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N26",
+      "title": "High-impact block following attack model",
+      "requirement": "R6",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "block_production_subnet"
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N27",
+      "title": "High-impact privileged identity disable with benign model but IOC",
+      "requirement": "R6",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "disable_privileged_identity",
+          "signal_verified": true,
+          "signal_fresh": true,
+          "signal_provenance_independent": true
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N28",
+      "title": "High-impact block despite corrupt model and independent signal",
+      "requirement": "R6",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": true,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": true,
+        "additional_evidence": {
+          "requested_action": "block_production_subnet"
+        }
+      },
+      "must": [
+        "SOC_review",
+        "human_approval_required",
+        "request_source_evidence"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N29",
+      "title": "No attack indication and no observed signal: high-impact request is not actionable",
+      "requirement": "R0",
+      "input": {
+        "predicted_attack": false,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "disable_privileged_identity"
+        }
+      },
+      "must": [
+        "no_case"
+      ],
+      "forbid": [
+        "auto_collect_evidence"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N30",
+      "title": "Unknown low-impact action cannot be automatic",
+      "requirement": "R4",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "run_new_script",
+          "action_impact": "low"
+        }
+      },
+      "must": [
+        "SOC_review"
+      ],
+      "forbid": [
+        "auto_collect_evidence",
+        "no_case"
+      ],
+      "expect_rejection": false
+    },
+    {
+      "id": "N31",
+      "title": "Cannot declare known high-impact subnet block as low-impact",
+      "requirement": "R7",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "block_production_subnet",
+          "action_impact": "low"
+        }
+      },
+      "must": [],
+      "forbid": [],
+      "expect_rejection": true
+    },
+    {
+      "id": "N32",
+      "title": "Reject non-Boolean prediction",
+      "requirement": "R7",
+      "input": {
+        "predicted_attack": "true",
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false
+      },
+      "must": [],
+      "forbid": [],
+      "expect_rejection": true
+    },
+    {
+      "id": "N33",
+      "title": "Reject negative containment duration",
+      "requirement": "R7",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "additional_evidence": {
+          "requested_action": "temporary_endpoint_isolation",
+          "action_impact": "medium",
+          "time_limit_minutes": -1
+        }
+      },
+      "must": [],
+      "forbid": [],
+      "expect_rejection": true
+    },
+    {
+      "id": "N34",
+      "title": "Reject reference label as input",
+      "requirement": "R7",
+      "input": {
+        "predicted_attack": true,
+        "all_zero": false,
+        "critical_asset": false,
+        "privileged_access": false,
+        "secondary_signal": false,
+        "supplied_label": 1
+      },
+      "must": [],
+      "forbid": [],
+      "expect_rejection": true
+    }
+  ]
+}

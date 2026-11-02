@@ -1,0 +1,7 @@
+{
+  "policy_version": "V4 exploratory, post-hoc repair",
+  "policy_sha256": "804b1a607f1cf51795412804f6ff732f2308bb37f3ef57f569712e5802c381d5",
+  "fixture_sha256": "26a78c79c070c31f152bfd9e6d77a61ab79cd73fd6eb62904bcd2447050a3259",
+  "reference_policy_unchanged": true,
+  "evaluation_boundary": "The same 34 researcher-authored cases and integration/UI tests are regression evidence, not independent V4 validation. Original V3 results are unchanged."
+}

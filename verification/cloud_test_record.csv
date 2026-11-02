@@ -8,3 +8,7 @@ Review queue at 5 percent,Stratified queue has 8538 rows and recovers 2103 known
 Review queue at 25 percent,Stratified queue has 42687 rows and recovers 16298 known flips,,,,,
 CSV and JSON downloads,Downloads contain the displayed predictions and execution details,,,,,
 Second device access,App opens and sample runs from another device or network,,,,,
+RQ2 model handoff,Recorded prediction and quality flags feed the policy; context remains simulated,,,,,
+RQ2 high-impact obligations,N27 and N28 require SOC review and human approval; no action executed,,,,,
+RQ2 decision exports,"JSON/CSV match the evaluated inputs, reasons and obligations",,,,,
+RQ2 source identity,"Record the tested app release, policy digest and served source commit",,,,,

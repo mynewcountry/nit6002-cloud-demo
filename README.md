@@ -1,6 +1,10 @@
-# NIT6002 Cybersecurity Data Review
+# AI-Based Mitigation Approaches for Cybersecurity Attacks
 
-This project wraps the recorded DataSense Random Forest in a Streamlit web app. It checks CSV model inputs, runs predictions and replays the recorded training-label review experiment. It is ready for local setup and cloud deployment; an actual cloud URL and cloud test outcomes must be recorded after deployment.
+This NIT6002 prototype checks DataSense CSV inputs, serves the recorded Random Forest, replays the historical training-label review pilot and demonstrates RQ2 decision support. The RQ2 view links model predictions and quality flags to evidence requests, SOC review and approval requirements using the saved exploratory V4 policy. Operational context is simulated. No response action is executed.
+
+RQ1 asks how dataset accuracy can be verified for AI threat detection. RQ2 asks how data-quality evidence and AI-assisted detection support SIEM, SOC and SOAR decisions within the four-layer Adaptive Cyber Resilience Architecture. Label review supports these questions. The original title and earlier V3 experimental results are retained.
+
+The recorded cloud URL redirected to an access-or-missing-app page in a signed-out browser on 2 November 2026. This observation does not distinguish a private app from a removed or incorrect deployment. Local tests and repository changes do not establish public cloud availability.
 
 The source model was replayed against 56,443 original held-out observations with zero predicted-class differences. This was an inference replay of the saved model, not a fresh training run or independent verification of dataset labels. Details are in `verification/inference_replay.json`.
 
@@ -12,6 +16,9 @@ Extract `NIT6002_Cloud_Demo.zip` into Downloads. The project folder should be na
 |---|---|
 | `app.py` | Streamlit interface |
 | `ml_core.py` | CSV checks, feature ordering, prediction and review-queue replay |
+| `rq2_view.py` | RQ2 input form, obligations, explanations and downloads |
+| `rq2_core.py` | Strict inference-to-policy adapter and matching JSON/CSV exports |
+| `rq2_policy_v4_hardened.py` | Unchanged exploratory V4 policy; execution authority stays false |
 | `requirements.txt` | Pinned app and model dependencies |
 | `model_manifest.json` | Model, schema and source identity |
 | `results/` | Recorded model, scores, predictions, audits and comparison tables |
@@ -61,25 +68,26 @@ Open the local address printed in Terminal. It is normally `http://localhost:850
 6. Open **Review experiment**. With **Stratified review** and **5%**, the queue should contain 8,538 rows and recover 2,103 known injected flips.
 7. Change the budget to **25%**. The queue should contain 42,687 rows and recover 16,298 known flips, or 95.45% of the injected changes.
 8. Open **Recorded evaluation** to inspect the five device holdouts and the fixed 5% restoration comparison.
+9. Open **RQ2 decision support**. Evaluate an included model record, then choose **Latest prediction run** to use the CSV just processed. Prediction/quality fields are derived from inference, while the incident context remains hypothetical.
+10. Choose **Illustrative scenario**. Inspect N27 (benign prediction with a high-impact request) and N28 (unreliable features with a high-impact request). Both retain approval obligations. N12 demonstrates a read-only recommendation when the simulated conditions are met. Every result keeps execution disabled.
+11. Download the decision JSON and CSV. They contain the same evaluated inputs, obligations and reason codes, plus a policy digest and timestamp. Changing the selected record hides stale exports until it is evaluated again.
 
 The demo sample was deliberately selected from Split 1 testing devices to include errors and all-zero cases. It contains 90 records and is not a random sample for estimating overall model performance. The actual five-split results are on **Recorded evaluation**.
 
 The review workspace rebuilds queues from saved out-of-group scores. It does not retrain models when a slider changes. The known-flip mask is used after selection for evaluation and is excluded from downloaded queues. This controlled test does not establish which natural dataset labels are incorrect.
 
-## 6 Create the GitHub repository
+The historical pilot's ranking ties and recovery values differ from the later five-seed report comparison. The RQ2 examples come from the previous authored challenge and were available during V4 repair. Replaying them or passing interface tests is regression evidence, not independent policy validation.
 
-1. Sign in to GitHub and create a new repository named `nit6002-cloud-demo`.
-2. Choose a private repository while developing it.
-3. Use **Add file**, then **Upload files**. Upload the contents of `nit6002_cloud_demo`, retaining its subfolders.
-4. Check that `app.py` and `requirements.txt` are directly at the repository root. Upload the extracted project files, rather than the ZIP as one file.
-5. Commit the files to `main` and record the commit identifier.
+## 6 Use the existing GitHub repository
+
+The existing source is https://github.com/mynewcountry/nit6002-cloud-demo. Keep `app.py`, `rq2_view.py`, `rq2_core.py`, the policy module and `requirements.txt` together at the repository root. Deploy the exact tested commit and retain its identifier. A repository update alone does not establish that Streamlit has served the update successfully.
 
 The original 294 MB dataset archive stays separately in Downloads. Serving the existing model needs the packaged model, schema, recorded results and small demo inputs. Every packaged project file is below GitHub's 25 MiB browser-upload limit.
 
 ## 7 Deploy on Streamlit Community Cloud
 
 1. Open https://share.streamlit.io and sign in.
-2. Connect the GitHub account that owns the repository and grant access to this private repository.
+2. Use the GitHub account that owns the existing repository and confirm that Streamlit can access it.
 3. Click **Create app**, then select the option for an existing app.
 4. Select repository `nit6002-cloud-demo`, branch `main`, and entrypoint `app.py`.
 5. In **Advanced settings**, choose **Python 3.12**. Keep `requirements.txt` at the root. This app does not require an API key or database credentials.
@@ -102,11 +110,19 @@ If the browser renamed the file, use its actual filename in the last command. Th
 
 The app reports inference time, excluding parsing, model loading and page rendering. For deployment testing, record repeated measured times separately for local and cloud execution. Include batch size, environment and whether the first run loaded the model. Report the measurements you actually observe.
 
+Check an RQ2 JSON/CSV download pair against the locally saved policy:
+
+```bash
+python analysis/verify_rq2_export.py "$HOME/Downloads/rq2_decision.json" "$HOME/Downloads/rq2_decision.csv"
+```
+
+This validates export consistency and policy replay. It does not independently verify the incident context, the policy's general correctness or the app's public availability.
+
 Open the app on another device or network and confirm that the sample can run. In **Deployment evidence**, enter the real URL and download the deployment record. That record labels the URL as user-entered; retain browser screenshots or other actual access evidence as well.
 
 ## 9 Set assessor access
 
-A private GitHub repository produces a private Streamlit app by default. Use the app's **Sharing** settings to choose who can view it. For a private demonstration, give the intended assessor viewer access and test that access before the defence. Streamlit Community Cloud currently allows one private app at a time.
+Check the app's intended audience in **Sharing** and verify the actual access conditions before the defence. An access-or-missing-app page is not evidence of successful deployment. Follow the supervisor's demonstration arrangements, including any separately specified D633 access test.
 
 ## 10 Keep the demonstration evidence
 
@@ -119,6 +135,7 @@ Keep these items together:
 - The cloud predictions, run record and export-comparison result.
 - Screenshots showing the live address, sample predictions, all-zero review flags and invalid-input rejection.
 - The 5% and 25% review-queue outputs.
+- The RQ2 decision JSON/CSV, the evaluated context and policy version, and an explicit non-execution result.
 - Recorded response-time measurements and any failures.
 
 No cloud deployment is claimed by opening this ZIP or running the local app. A cloud demonstration is complete only when the remote app is accessible and the cloud tests have been performed.
@@ -127,7 +144,7 @@ No cloud deployment is claimed by opening this ZIP or running the local app. A c
 
 Describe its architecture and implemented components in Methodology. Describe compatible inputs and validation in Data Collection and Processing. Report prediction replay, deployment checks, measured timing and failed cases in Experimental Evaluation. Interpret what the prototype establishes and its limits in Discussion.
 
-The app does not implement live SIEM ingestion, SOAR containment or independent natural-label adjudication. Original labels remain reference annotations. Cloud hosting is additional implementation evidence; the 2–3 relevant published-method comparisons, controlled ablation and broader experimental evaluation still need to be completed for the intended HD submission.
+The app does not implement live SIEM ingestion, SOAR containment or independent natural-label adjudication. Original labels remain reference annotations. The RQ2 view demonstrates proposed handoff obligations, not organisational mitigation effectiveness. The three adapted comparison families in the report remain distinct from the recent intrusion-specific SOTA comparisons still needed for the stronger D/HD claim. Further controlled ablation and independent policy validation remain separate research tasks.
 
 Refer to it as a cloud-hosted research prototype once actually deployed. The supplied assessment files did not establish a D633-specific hosting requirement.
 
